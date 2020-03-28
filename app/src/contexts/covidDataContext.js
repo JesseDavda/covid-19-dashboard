@@ -13,7 +13,6 @@ export const CovidDataContextProvider = ({ children }) => {
     const getCoronaData = async () => {
         try {
             const casesObject = await axios.get(covidCasesEndpoint);
-            console.log(casesObject.data);
             setCoronaDataObject({
                 totalCases: casesObject.data.confirmed.value,
                 totalDeaths: casesObject.data.deaths.value,

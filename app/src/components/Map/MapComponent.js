@@ -1,35 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     ComposableMap,
-    ZoomableGroup,
     Geographies,
     Geography,
-} from 'react-simple-maps'
+} from 'react-simple-maps';
 
+import MapContext from '../../contexts/mapContext';
 import * as Styled from './styles';
 
-const geoURL = 
-    'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
-
 const MapComponent = ({ setToolTipContent }) => {
+    const { geoJson } = useContext(MapContext);
+
     return (
         <Styled.GlobeContainer>
             <ComposableMap 
                 projectionConfig={{ scale: 200 }}
                 style={{
                     width: '100%',
-                    height: '700px',
+                    height: '650px',
                 }}
                 data-tip=""
             >
-                <Geographies geography={geoURL}>
+                <Geographies geography={geoJson}>
                     {({ geographies }) => geographies.map(geo => (
                         <Geography 
                             key={geo.rsmKey}
                             geography={geo}
                             onMouseEnter={() => {
-                                const { NAME, POP_EST } = geo.properties;
-                                setToolTipContent(`${NAME} — ${POP_EST}`);
+                                const { NAME, COVID } = geo.properties;
+                                setToolTipContent({
+                                    countryName: NAME,
+                                    covid_data: COVID
+                                });
                             }}
                             onMouseLeave={() => {
                                 setToolTipContent("");

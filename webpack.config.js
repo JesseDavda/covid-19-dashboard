@@ -5,7 +5,7 @@ module.exports = {
     entry: ['@babel/polyfill', './app/src/index.js'],
     module: {
         rules: [
-            { test:  /\.(css)$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.(css)$/, use: ['style-loader', 'css-loader'] },
             { test: /\.(js)$/, use:'babel-loader' },
             { test: /\.(svg)$/, use: ['@svgr/webpack', 'svg-url-loader'] },
             { test: /\.coffee$/, use: 'coffee-loader' }
