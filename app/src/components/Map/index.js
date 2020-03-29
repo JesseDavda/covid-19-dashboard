@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Flex } from 'rebass';
 import ReactTooltip from 'react-tooltip';
 
 import MapComponent from './MapComponent';
+import Key from './components/Key';
 import { MapProvider } from '../../contexts/mapContext';
 import ToolTip from './components/ToolTip';
 
@@ -10,7 +12,8 @@ const Map = () => {
 
     return (
         <MapProvider>
-            <div>
+            <Flex alignItems="center" flexDirection="column">
+                <Key />
                 <MapComponent setToolTipContent={setToolTipContent} />
                 <ReactTooltip>
                     {toolTipContent !== ""
@@ -20,7 +23,7 @@ const Map = () => {
                           />
                         : toolTipContent}
                 </ReactTooltip>
-            </div>
+            </Flex>
         </MapProvider>
     );
 }
