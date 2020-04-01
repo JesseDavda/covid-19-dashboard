@@ -11,12 +11,6 @@ const Rankings = () => {
     const { globalRanking } = useContext(GlobalRankingContext);
     countries.registerLocale(countryJson);
 
-    useEffect(() => {
-        console.log("The ranking: ", globalRanking);
-        console.log("true false, ", globalRanking.length === 0 || !globalRanking.length);
-        console.log("Global ranking updated");
-    }, [globalRanking]);
-
     return (
         <Styled.RankingsContainer>
             <Styled.TitleContainer>
@@ -28,7 +22,6 @@ const Rankings = () => {
                     : globalRanking.map(country => {
                         console.log(country.countryName);
                         const countryName = countries.getName(country.countryName, "en");
-                        console.log(countryName);
                         return (
                             <Country 
                                 key={country.countryName}

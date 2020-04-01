@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
     ComposableMap,
     Geographies,
@@ -6,6 +6,7 @@ import {
 } from 'react-simple-maps';
 
 import MapContext from '../../contexts/mapContext';
+import * as MapUtils from './utils';
 import * as Styled from './styles';
 
 const percentageColour = (properties) => {
@@ -13,15 +14,17 @@ const percentageColour = (properties) => {
         if(properties.COVID !== "No Data") {
             const { COVID, POP_EST } = properties;
             const percentage = (COVID.confirmed / POP_EST) * 1500;
-            return `rgba(0, 0, ${percentage * 255}, 1)`;
+            return MapUtils.getColour(percentage);
         }
     }
 
-    return '#D6D6DA';
+    return '#718093';
 }
 
 const MapComponent = ({ setToolTipContent }) => {
     const { geoJson } = useContext(MapContext);
+
+    useEffect(() => {console.log("geoJson updated")}, [geoJson]);
 
     return (
         <Styled.GlobeContainer>

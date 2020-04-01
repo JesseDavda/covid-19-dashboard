@@ -20,10 +20,6 @@ export const GlobalRankingProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        console.log("updated in the context");
-    }, [globalRankingState])
-
-    useEffect(() => {
         createRanking()
             .then(data => {
                 setGlobalRankingState(data);
