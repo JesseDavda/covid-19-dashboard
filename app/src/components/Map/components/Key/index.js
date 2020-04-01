@@ -7,7 +7,7 @@ const Key = () => {
     return (
         <Styled.KeyContainer>
             <Styled.KeyItem>
-                <Styled.Colour color='red' />
+                <Styled.Colour color='blue' />
                 <Styled.Label>Fully infected</Styled.Label>
             </Styled.KeyItem>
             <Styled.KeyItem>

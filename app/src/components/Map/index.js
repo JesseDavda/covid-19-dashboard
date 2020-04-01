@@ -8,21 +8,23 @@ import { MapProvider } from '../../contexts/mapContext';
 import ToolTip from './components/ToolTip';
 
 const Map = () => {
-    const [toolTipContent, setToolTipContent] = useState({});
+    const [toolTipContent, setToolTipContent] = useState('');
 
     return (
         <MapProvider>
-            <Flex alignItems="center" flexDirection="column">
-                <Key />
+            <Flex alignItems='center' flexDirection='column'>
                 <MapComponent setToolTipContent={setToolTipContent} />
                 <ReactTooltip>
-                    {toolTipContent !== ""
-                        ? <ToolTip
+                    {toolTipContent !== '' ? (
+                        <ToolTip
                             countryName={toolTipContent.countryName}
                             covidData={toolTipContent.covid_data}
-                          />
-                        : toolTipContent}
+                        />
+                    ) : (
+                        toolTipContent
+                    )}
                 </ReactTooltip>
+                <Key />
             </Flex>
         </MapProvider>
     );

@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import * as R from 'ramda';
 
-import { covidCasesEndpoint } from '../utils/endpoints';
+import { covidCasesEndpoint, countryConfirmedData } from '../utils/endpoints';
 
 export const CovidDataContext = createContext();
 
@@ -38,6 +38,15 @@ export const CovidDataContextProvider = ({ children }) => {
         }
     }
 
+    const getCountryData = async () => {
+        try {
+            const countryData = await axios.get(countryConfirmedData);
+            return countryData.data;
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
     useEffect(() => {
         getCoronaData();
         getDailyCoronaData();
@@ -47,6 +56,7 @@ export const CovidDataContextProvider = ({ children }) => {
         <CovidDataContext.Provider value={{
             coronaDataObject,
             coronaDailyObject,
+            getCountryData,
         }}>
             {children}
         </CovidDataContext.Provider>

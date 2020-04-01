@@ -1,7 +1,8 @@
 import React, { 
     createContext,
     useState,
-    useEffect 
+    useEffect,
+    useContext,
 } from 'react';
 import axios from 'axios';
 import * as R from 'ramda';
@@ -9,20 +10,13 @@ import * as R from 'ramda';
 import { countryConfirmedData } from '../utils/endpoints';
 import { geoJson, countryData } from '../assets/GeoToplogy';
 import * as MapUtils from '../utils/mapDataUtils';
+import { CovidDataContext } from './covidDataContext';
 
 const MapContext = createContext();
 
 export const MapProvider = ({ children }) => {
+    const { getCountryData } = useContext(CovidDataContext);
     const [ geoJsonState, setGeoJsonState ] = useState(geoJson);
-
-    const getCountryData = async () => {
-        try {
-            const countryData = await axios.get(countryConfirmedData);
-            return countryData;
-        } catch (error) {
-            throw new Error(error)
-        }
-    }
 
     const createCountryDataArray = async () => {
         try {
@@ -30,7 +24,7 @@ export const MapProvider = ({ children }) => {
             return R.pipe(
                 MapUtils.collectCountries,
                 MapUtils.combineCountries
-            )(rawData.data);
+            )(rawData);
         } catch (error) {
             throw new Error(error);
         }

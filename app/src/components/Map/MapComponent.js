@@ -13,7 +13,7 @@ const percentageColour = (properties) => {
         if(properties.COVID !== "No Data") {
             const { COVID, POP_EST } = properties;
             const percentage = (COVID.confirmed / POP_EST) * 1500;
-            return `rgb(${Math.round(percentage * 255)}, 0, 0)`;
+            return `rgba(0, 0, ${percentage * 255}, 1)`;
         }
     }
 
@@ -55,10 +55,6 @@ const MapComponent = ({ setToolTipContent }) => {
                                 },
                                 hover: {
                                     fill: "#e74c3c",
-                                    outline: "none"
-                                },
-                                pressed: {
-                                    fill: "#E42",
                                     outline: "none"
                                 }
                             }}
