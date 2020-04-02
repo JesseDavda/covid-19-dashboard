@@ -15,7 +15,7 @@ import { CovidDataContext } from './covidDataContext';
 const MapContext = createContext();
 
 export const MapProvider = ({ children }) => {
-    const { getCountryData } = useContext(CovidDataContext);
+    const { getCountryData, coronaDataObject } = useContext(CovidDataContext);
     const [ geoJsonState, setGeoJsonState ] = useState(geoJson);
 
     const createCountryDataArray = async () => {
@@ -50,6 +50,7 @@ export const MapProvider = ({ children }) => {
     return (
         <MapContext.Provider value={{
             geoJson: geoJsonState,
+            totalCases: coronaDataObject.totalCases
         }}>
             {children}
         </MapContext.Provider>

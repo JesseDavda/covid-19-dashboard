@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Flex } from 'rebass';
 
 export const RankingsContainer = styled(Flex)`
-    width: 325px;
+    width: 265px;
     height: 100%;
     flex-direction: column;
     align-items: center;
@@ -51,7 +51,7 @@ export const CountryContainer = styled(Flex)`
 export const CountryName = styled.h4`
     color: #FFF;
     font-weight: 300;
-    font-size: 10px;
+    font-size: 12px;
     font-family: 'Open-Sans', sans-serif;
     letter-spacing: 3px;
 `;

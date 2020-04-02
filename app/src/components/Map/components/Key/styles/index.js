@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {Flex} from 'rebass';
 
 export const KeyContainer = styled(Flex)`
-    width: 400px;
+    width: 450px;
     height: 35px;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@ export const Colour = styled.div`
 export const Label = styled.p`
     font-family: 'Open-Sans', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     color: #FFFFFF;
     margin: 0px 5px;
 `;

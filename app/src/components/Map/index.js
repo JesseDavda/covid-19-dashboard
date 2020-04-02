@@ -14,7 +14,7 @@ const Map = () => {
         <MapProvider>
             <Flex alignItems='center' flexDirection='column'>
                 <MapComponent setToolTipContent={setToolTipContent} />
-                <ReactTooltip>
+                <ReactTooltip backgroundColor={'rgba(0, 0, 0, 0.6)'}>
                     {toolTipContent !== '' ? (
                         <ToolTip
                             countryName={toolTipContent.countryName}

@@ -15,6 +15,8 @@ export const CountryName = styled.h3`
     font-weight: 500;
     color: #fff;
     margin: 5px 0px;
+    letter-spacing: 3px;
+    font-size: 14px;
 `;
 
 export const DataItem = styled.p`
@@ -22,4 +24,5 @@ export const DataItem = styled.p`
     font-weight: 300;
     color: #fff;
     margin: 3px 0px;
+    font-size: 12px;
 `;

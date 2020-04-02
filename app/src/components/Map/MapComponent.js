@@ -9,12 +9,12 @@ import MapContext from '../../contexts/mapContext';
 import * as MapUtils from './utils';
 import * as Styled from './styles';
 
-const percentageColour = (properties) => {
+const percentageColour = (properties, totalCases) => {
     if(properties.COVID && properties.POP_EST) {
         if(properties.COVID !== "No Data") {
             const { COVID, POP_EST } = properties;
-            const percentage = (COVID.confirmed / POP_EST) * 1500;
-            return MapUtils.getColour(percentage);
+            const percentage = (COVID.confirmed / POP_EST) * (totalCases * 0.0005);
+            return MapUtils.getColour(percentage > 1 ? 1 : percentage);
         }
     }
 
@@ -22,7 +22,7 @@ const percentageColour = (properties) => {
 }
 
 const MapComponent = ({ setToolTipContent }) => {
-    const { geoJson } = useContext(MapContext);
+    const { geoJson, totalCases } = useContext(MapContext);
 
     useEffect(() => {console.log("geoJson updated")}, [geoJson]);
 
@@ -53,12 +53,16 @@ const MapComponent = ({ setToolTipContent }) => {
                             }}
                             style={{
                                 default: {
-                                    fill: percentageColour(geo.properties),
+                                    fill: percentageColour(geo.properties, totalCases),
                                     outline: "none"
                                 },
                                 hover: {
                                     fill: "#e74c3c",
                                     outline: "none"
+                                },
+                                pressed: {
+                                    fill: '#FFFFFF',
+                                    outline: "none",
                                 }
                             }}
                         />

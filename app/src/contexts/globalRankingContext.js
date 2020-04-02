@@ -6,7 +6,7 @@ import { calculateTopTen } from '../utils/globalRankingUtils';
 const GlobalRankingContext = createContext();
 
 export const GlobalRankingProvider = ({ children }) => {
-    const { getCountryData } = useContext(CovidDataContext);
+    const { getCountryData, coronaDataObject } = useContext(CovidDataContext);
     const [globalRankingState, setGlobalRankingState] = useState([]);
 
     const createRanking = async () => {

@@ -13,8 +13,8 @@ const ToolTip = ({
 
     return (
         <Styled.ToolTipContainer>
-            <Styled.CountryName>{countryName}</Styled.CountryName>
-            <Styled.DataItem>Confirmed cases:&nbsp;
+            <Styled.CountryName>{countryName.toUpperCase()}</Styled.CountryName>
+            <Styled.DataItem>Confirmed Cases:&nbsp;
                 {covidData.confirmed
                     ? NumberMask(covidData.confirmed)
                     : 'No data found'}
